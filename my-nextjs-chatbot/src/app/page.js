@@ -31,7 +31,7 @@ export default function Home() {
           cols="50"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-        placeholder="Type your prompt..."
+        placeholder="Ask me a question..."
       />
       <br />
       <button onClick={sendPrompt}>Generate</button>
