@@ -1,20 +1,13 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-
+//import Image from "next/image";
+//import styles from "./page.module.css";
+import { formatResult } from "../lib/utils/formatResults.js";
 
 import { useState } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
-
-  function formatResult(geminiRawResult) {
-    // Gemini may not return you the properly formatted text.
-    // TODO: You need to update the code of this function to tranform the geminiRawResult to a well formatted result. Hint: You may use some regular expressions for find/replace. 
-    const formattedResult = geminiRawResult;
-    return formattedResult;
-  }
 
   async function sendPrompt() {
     const res = await fetch("/api/generate", {
@@ -24,7 +17,7 @@ export default function Home() {
     });
     const data = await res.json();
     const formattedResult = formatResult(data.content || data.error);
-    setResult(data.content || data.error);
+    setResult(formattedResult);
   }
 
   return (
